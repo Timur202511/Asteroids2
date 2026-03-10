@@ -1,6 +1,7 @@
 package com.example.asteroids;
 
 import javafx.application.Application;
+import javafx.event.Event;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
@@ -18,9 +19,11 @@ public class HelloApplication extends Application {
         stage.show();
         HelloController controller = fxmlLoader.getController();
         scene.setOnKeyPressed(controller::handleKeyPressed);
+        scene.setOnKeyReleased(controller::handleKeyReleased);
     }
 
     public static void main(String[] args) {
         launch();
     }
+
 }

@@ -10,15 +10,20 @@ import javafx.scene.input.KeyEvent;
 public class HelloController {
 
     @FXML
-    private ImageView bg1, bg2, rocket;
+    private ImageView bg1, bg2, rocket, asteroid1, asteroid2, asteroid3;
 
     private double offset = 0;
+    private double offsetAsteroid1 = 0;
 
     @FXML
     public void initialize() {
         Image background = new Image(getClass().getResourceAsStream("/images/background.jpg"));
+        Image imagesAsteroid = new Image(getClass().getResourceAsStream("/images/asteroid.png"));
         rocket.setImage(new Image(getClass().getResourceAsStream("/images/rocket.png")));
 
+        asteroid1.setImage(imagesAsteroid);
+        asteroid1.setLayoutX(900);
+        asteroid1.setLayoutY(Math.random() * 540);
         bg1.setImage(background);
         bg2.setImage(background);
         bg2.setLayoutX(900);
@@ -26,15 +31,24 @@ public class HelloController {
         AnimationTimer timer = new AnimationTimer() {
             @Override
             public void handle(long l) {
+
                 offset -= 1; // offset = offset - 1;
-                if (offset <= -900){
+                if (offset <= -900) {
                     offset = 0;
                 }
-
+                offsetAsteroid1 -= 2;
+                if (offsetAsteroid1 <= -1000)
+                    offsetAsteroid1 = 0;
                 bg1.setLayoutX(offset);
                 bg2.setLayoutX(offset + 900);
-
+                asteroid1.setLayoutX(offsetAsteroid1 + 900);
             }
+
+
+
+
+
+
         };
         timer.start();
 
@@ -42,11 +56,18 @@ public class HelloController {
 
     public void handleKeyPressed(KeyEvent keyEvent) {
 
-        if (keyEvent.getCode() == KeyCode.UP && rocket.getLayoutY() >=0){
+        if (keyEvent.getCode() == KeyCode.UP && rocket.getLayoutY() >= 0) {
             rocket.setLayoutY(rocket.getLayoutY() - 10);
+            rocket.setRotate(85);
         }
-        if (keyEvent.getCode() == KeyCode.DOWN && rocket.getLayoutY() <=510){
+        if (keyEvent.getCode() == KeyCode.DOWN && rocket.getLayoutY() <= 510) {
             rocket.setLayoutY(rocket.getLayoutY() + 10);
+            rocket.setRotate(95);
+
         }
+    }
+
+    public void handleKeyReleased(KeyEvent keyEvent) {
+        rocket.setRotate(90);
     }
 }
