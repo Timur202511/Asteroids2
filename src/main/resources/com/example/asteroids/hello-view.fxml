@@ -11,3 +11,5 @@
     <ImageView fx:id="asteroid2" fitWidth="90" fitHeight="60"/>
     <ImageView fx:id="asteroid3" fitWidth="90" fitHeight="60"/>
 </AnchorPane>
+
+

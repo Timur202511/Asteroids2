@@ -13,7 +13,9 @@ public class HelloController {
     private ImageView bg1, bg2, rocket, asteroid1, asteroid2, asteroid3;
 
     private double offset = 0;
-    private double offsetAsteroid1 = 0;
+    private double asteroid1_x = 900 + Math.random() * 300;
+    private double asteroid2_x = 900 + Math.random() * 300;
+    private double asteroid3_x = 900 + Math.random() * 300;
 
     @FXML
     public void initialize() {
@@ -22,8 +24,11 @@ public class HelloController {
         rocket.setImage(new Image(getClass().getResourceAsStream("/images/rocket.png")));
 
         asteroid1.setImage(imagesAsteroid);
-        asteroid1.setLayoutX(900);
+        asteroid2.setImage(imagesAsteroid);
+        asteroid3.setImage(imagesAsteroid);
         asteroid1.setLayoutY(Math.random() * 540);
+        asteroid2.setLayoutY(Math.random() * 540);
+        asteroid3.setLayoutY(Math.random() * 540);
         bg1.setImage(background);
         bg2.setImage(background);
         bg2.setLayoutX(900);
@@ -36,17 +41,39 @@ public class HelloController {
                 if (offset <= -900) {
                     offset = 0;
                 }
-                offsetAsteroid1 -= 2;
-                if (offsetAsteroid1 <= -1000)
-                    offsetAsteroid1 = 0;
+                asteroid1_x -= 2;
+                asteroid1.setRotate(asteroid1_x);
+                asteroid2.setRotate(asteroid2_x);
+                asteroid3.setRotate(asteroid3_x);
+
+                if (asteroid1_x <= -100) {
+                    asteroid1_x = 900 + Math.random() * 300;
+                    asteroid1.setLayoutY(Math.random() * 540);
+                }
+                asteroid1.setLayoutX(asteroid1_x);
                 bg1.setLayoutX(offset);
                 bg2.setLayoutX(offset + 900);
-                asteroid1.setLayoutX(offsetAsteroid1 + 900);
+
+                asteroid2_x -= 2.2;
+
+                if (asteroid2_x <= -100) {
+                    asteroid2_x = 900 + Math.random() * 300;
+                    asteroid2.setLayoutY(Math.random() * 540);
+                }
+                asteroid2.setLayoutX(asteroid2_x);
+                bg1.setLayoutX(offset);
+                bg2.setLayoutX(offset + 900);
+
+                asteroid3_x -= 2.5;
+
+                if (asteroid3_x <= -100) {
+                    asteroid3_x = 900 + Math.random() * 300;
+                    asteroid3.setLayoutY(Math.random() * 540);
+                }
+                asteroid3.setLayoutX(asteroid3_x);
+                bg1.setLayoutX(offset);
+                bg2.setLayoutX(offset + 900);
             }
-
-
-
-
 
 
         };

@@ -1,5 +1,6 @@
 package com.example.asteroids;
 
+
 import javafx.application.Application;
 import javafx.event.Event;
 import javafx.fxml.FXMLLoader;
